@@ -1,0 +1,19 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "Run": {
+      "commandName": "Executable"
+    },
+    "test 2026": {
+      "commandName": "Project",
+      "commandLineArgs": "-i \"C:\\Users\\gavre\\OneDrive\\Кафедральные файлы\\НАГРУЗКА\\НАГРУЗКА 2026\\1. Апрель\\УМУ\\2026-04 Апрель\\ИТиВС_.rtf\""
+    },
+    "test 2025": {
+      "commandName": "Project",
+      "commandLineArgs": "-i \"C:\\Users\\gavre\\OneDrive\\Кафедральные файлы\\НАГРУЗКА\\НАГРУЗКА 2025\\3. Весна\\УМУ\\ИТиВС_бюджетная.rtf\""
+    }
+  }
+}

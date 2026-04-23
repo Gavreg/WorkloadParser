@@ -14,8 +14,7 @@ for (int i = 0; i<args.Length; i++)
     {
         case "-i":
             {
-                inputfile = args[++i];
-                 
+                inputfile = args[++i];            
 
                 break;
             }
@@ -35,7 +34,6 @@ doc.LoadRTFText(nagr);
 
 
 var rows = new List<RTFDomTableRow>();
-
 
 
 var discipline_rows = new List<Discipline_Row>();
@@ -167,8 +165,6 @@ foreach (var dr in discipline_rows)
     ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM].Value = dr.stream;
     ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM_FULL].Value = dr.stream + "-" + Math.Round(1.0*curYear - ( (_sem - 1))%8 / 2).ToString();
     ws.Cells[_row, (int)ExcellMapper.A_Fields.GROUPS].Value = dr.group;
-    //ws.Cells[_row, __i++].Value = dr.student;
-
    
 
     if (dr.lections.HasValue)
@@ -184,8 +180,6 @@ foreach (var dr in discipline_rows)
         ws.Cells[_row, (int)ExcellMapper.A_Fields.LEC_HOURS_BUDGET].Value = lek;
     }
     
-
-
     if (dr.pr.HasValue)
     {
         double pr = dr.pr.Value / dr.group.Value;
@@ -209,7 +203,6 @@ foreach (var dr in discipline_rows)
         ws.Cells[_row, (int)ExcellMapper.A_Fields.PR_IND].Value = Math.Round(ind, 1, MidpointRounding.ToZero);
 
     }
-
 
     if (dr.labs.HasValue)
     { 
@@ -235,7 +228,6 @@ foreach (var dr in discipline_rows)
         ws.Cells[_row, (int)ExcellMapper.A_Fields.LAB_IND].Value = Math.Round(ind, 1, MidpointRounding.ToZero);
     }
 
-
     if (dr.kur.HasValue)
     {
         double kur = dr.kur.Value;
@@ -246,7 +238,6 @@ foreach (var dr in discipline_rows)
         ws.Cells[_row, (int)ExcellMapper.A_Fields.KUR_PER_MAN].Value = hours_per_man;
         ws.Cells[_row, (int)ExcellMapper.A_Fields.KUR].Value = kur;
     }
-
 
     if (dr.ind > 0)
     {

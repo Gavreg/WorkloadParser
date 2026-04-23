@@ -192,7 +192,7 @@ namespace ConsoleApp11
             { Fields.PR, 32 },
             { Fields.LAB, 39 },
             { Fields.KUR, 50 },
-            { Fields.IND, 50 },
+            { Fields.IND, 44 },
             { Fields.SUM, 54},
         };
 

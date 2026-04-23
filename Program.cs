@@ -81,8 +81,7 @@ for (int i = 0; i < doc.Elements.Count; ++i)
             foreach (var x in Discipline_Row.fields_map)
             {
                 string data = functions.GetCellText(row.Elements[x.Value] as RTFDomTableCell).Trim();
-                if (data != "")
-                    d_row[x.Key] += " " + data;
+                d_row[x.Key] = data;
             }
 
             d_row.PrintFormatted();
@@ -104,8 +103,7 @@ for (int i = 0; i < doc.Elements.Count; ++i)
             foreach (var x in VARow.fields_map)
             {
                 string data = functions.GetCellText(row.Elements[x.Value] as RTFDomTableCell).Trim();
-                if (data != "")
-                    varow[x.Key] += " " + data;
+                varow[x.Key] = data;
             }
 
             varow.PrintFormatted();

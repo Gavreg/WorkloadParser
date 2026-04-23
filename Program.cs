@@ -27,7 +27,7 @@ FileInfo fi = new FileInfo(inputfile);
 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
 
-const int curYear = 25;
+const int curYear = 26;
 
 RTFDomDocument doc = new RTFDomDocument();
 var nagr = File.ReadAllText(inputfile);
@@ -120,8 +120,6 @@ Console.WriteLine(new String('=', 10));
 
 
 using StreamWriter sw = new StreamWriter($"{Path.GetFileNameWithoutExtension(fi.Name)}.txt",false);
-using MemoryStream ms = new MemoryStream(sw);
-
 
 
 sw.WriteLine($"Всего аудиторной:");
@@ -345,10 +343,6 @@ foreach (var _varow in va_rows)
 
 sw.Close();
 
-
-
-
-
 for(bool f = true; f;)
 {
     try
@@ -358,7 +352,7 @@ for(bool f = true; f;)
     }
 
     catch (Exception e)
-    {        
+    {       
 
         Console.WriteLine(e.ToString());
         Console.WriteLine("");

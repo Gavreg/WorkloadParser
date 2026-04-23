@@ -80,7 +80,7 @@ for (int i = 0; i < doc.Elements.Count; ++i)
 
             foreach (var x in Discipline_Row.fields_map)
             {
-                string data = functions.GetCellText(row.Elements[x.Value] as RTFDomTableCell);
+                string data = functions.GetCellText(row.Elements[x.Value] as RTFDomTableCell).Trim();
                 if (data != "")
                     d_row[x.Key] += " " + data;
             }
@@ -103,7 +103,7 @@ for (int i = 0; i < doc.Elements.Count; ++i)
 
             foreach (var x in VARow.fields_map)
             {
-                string data = functions.GetCellText(row.Elements[x.Value] as RTFDomTableCell);
+                string data = functions.GetCellText(row.Elements[x.Value] as RTFDomTableCell).Trim();
                 if (data != "")
                     varow[x.Key] += " " + data;
             }
@@ -160,10 +160,10 @@ foreach (var dr in discipline_rows)
 
     int _sem = dr.sem.Value;
     ws.Cells[_row, (int)ExcellMapper.A_Fields.ID].Value = dr.id;
-    ws.Cells[_row, (int)ExcellMapper.A_Fields.NAME].Value = dr.name.Trim();
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.NAME].Value = dr.name;
     ws.Cells[_row, (int)ExcellMapper.A_Fields.SEM].Value = dr.sem;
-    ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM].Value = dr.stream.Trim();
-    ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM_FULL].Value = dr.stream.Trim() + "-" + Math.Round(1.0*curYear - ( (_sem - 1))%8 / 2).ToString();
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM].Value = dr.stream;
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM_FULL].Value = dr.stream + "-" + Math.Round(1.0*curYear - ( (_sem - 1))%8 / 2).ToString();
     ws.Cells[_row, (int)ExcellMapper.A_Fields.GROUPS].Value = dr.group;
    
 
@@ -239,7 +239,7 @@ foreach (var dr in discipline_rows)
         ws.Cells[_row, (int)ExcellMapper.A_Fields.KUR].Value = kur;
     }
 
-    if (dr.ind > 0)
+    if (dr.ind.HasValue)
     {
         double ind = dr.ind.Value;
         double ind_per_man = ind / dr.student.Value;

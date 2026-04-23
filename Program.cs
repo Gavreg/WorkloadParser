@@ -160,10 +160,10 @@ foreach (var dr in discipline_rows)
 
     int _sem = dr.sem.Value;
     ws.Cells[_row, (int)ExcellMapper.A_Fields.ID].Value = dr.id;
-    ws.Cells[_row, (int)ExcellMapper.A_Fields.NAME].Value = dr.name;
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.NAME].Value = dr.name.Trim();
     ws.Cells[_row, (int)ExcellMapper.A_Fields.SEM].Value = dr.sem;
-    ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM].Value = dr.stream;
-    ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM_FULL].Value = dr.stream + "-" + Math.Round(1.0*curYear - ( (_sem - 1))%8 / 2).ToString();
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM].Value = dr.stream.Trim();
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM_FULL].Value = dr.stream.Trim() + "-" + Math.Round(1.0*curYear - ( (_sem - 1))%8 / 2).ToString();
     ws.Cells[_row, (int)ExcellMapper.A_Fields.GROUPS].Value = dr.group;
    
 

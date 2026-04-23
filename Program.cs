@@ -136,44 +136,19 @@ var excel = new ExcelPackage();
 var ws = excel.Workbook.Worksheets.Add("Аудиторная");
 
 
-for (int i=1; i<30; ++i)
+
+
+var arr = (ExcellMapper.A_Fields[])Enum.GetValues(typeof(ExcellMapper.A_Fields));
+
+foreach (var item in arr)
+{
+    ws.Cells[2, (int)item].Value = ExcellMapper.ColumnName(item);
+}
+
+for (int i = 1; i < arr.Max(x=>(int)x); ++i)
 {
     ws.Cells[1, i].Value = i;
 }
-
-var ___i = 1;
-ws.Cells[2, ___i++].Value = "id";
-ws.Cells[2, ___i++].Value = "наим";
-ws.Cells[2, ___i++].Value = "сем";
-ws.Cells[2, ___i++].Value = "пот";
-ws.Cells[2, ___i++].Value = "пот2";
-ws.Cells[2, ___i++].Value = "гр";
-ws.Cells[2, ___i++].Value = "подгр";
-
-ws.Cells[2, ___i++].Value = "лек кол";
-ws.Cells[2, ___i++].Value = "лек час";
-ws.Cells[2, ___i++].Value = "лек бю";
-
-ws.Cells[2, ___i++].Value = "сем кол";
-ws.Cells[2, ___i++].Value = "сем час";
-ws.Cells[2, ___i++].Value = "сем студ";
-ws.Cells[2, ___i++].Value = "сем инд";
-
-ws.Cells[2, ___i++].Value = "лаб кол";
-ws.Cells[2, ___i++].Value = "лаб час";
-ws.Cells[2, ___i++].Value = "лаб студ";
-ws.Cells[2, ___i++].Value = "лаб инд";
-
-ws.Cells[2, ___i++].Value = "кур/чел";
-ws.Cells[2, ___i++].Value = "кур час";
-
-ws.Cells[2, ___i++].Value = "инд/чел";
-ws.Cells[2, ___i++].Value = "инд час";
-
-ws.Cells[2, ___i++].Value = "всего";
-
-
-
 
 int _row = 3; 
 
@@ -185,15 +160,14 @@ foreach (var dr in discipline_rows)
     sw.WriteLine($"   Кол-во групп {dr.group} ({dr.sub_group} подогр.)");
     sw.WriteLine($"   Студентов {dr.student}");
 
-    var __i = 1;
     int _sem = dr.sem.Value;
-    ws.Cells[_row, __i++].Value = dr.id;
-    ws.Cells[_row, __i++].Value = dr.name;
-    ws.Cells[_row, __i++].Value = dr.sem;
-    ws.Cells[_row, __i++].Value = dr.stream;
-    ws.Cells[_row, __i++].Value = dr.stream + "-" + Math.Round(1.0*curYear - ( (_sem - 1))%8 / 2).ToString();
-    ws.Cells[_row, __i++].Value = dr.group;
-    ws.Cells[_row, __i++].Value = dr.student;
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.ID].Value = dr.id;
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.NAME].Value = dr.name;
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.SEM].Value = dr.sem;
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM].Value = dr.stream;
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM_FULL].Value = dr.stream + "-" + Math.Round(1.0*curYear - ( (_sem - 1))%8 / 2).ToString();
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.GROUPS].Value = dr.group;
+    //ws.Cells[_row, __i++].Value = dr.student;
 
    
 
@@ -205,12 +179,11 @@ foreach (var dr in discipline_rows)
         sw.WriteLine($"             Часов-всего {lek}");
         sw.WriteLine($"             Индив.      0,3");
 
-        ws.Cells[_row, __i++].Value = lek / 2;
-        ws.Cells[_row, __i++].Value = lek;
-        ws.Cells[_row, __i++].Value = lek;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.LEC_COUNT].Value = lek / 2;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.LEC_HOURS].Value = lek;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.LEC_HOURS_BUDGET].Value = lek;
     }
-    else    
-        __i+=3;
+    
 
 
     if (dr.pr.HasValue)
@@ -230,14 +203,13 @@ foreach (var dr in discipline_rows)
         sw.WriteLine($"               Часов-всего {pr_all}");
         sw.WriteLine($"               Индив.      {Math.Round(ind, 1, MidpointRounding.ToZero)}");
 
-        ws.Cells[_row, __i++].Value = pr / 2;
-        ws.Cells[_row, __i++].Value = pr_all;
-        ws.Cells[_row, __i++].Value = pr_all;
-        ws.Cells[_row, __i++].Value = Math.Round(ind, 1, MidpointRounding.ToZero);
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.PR_COUNT].Value = pr / 2;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.PR_HOURS].Value = pr_all;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.PR_BUDGET].Value = pr_all;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.PR_IND].Value = Math.Round(ind, 1, MidpointRounding.ToZero);
 
     }
-    else
-        __i += 4;
+
 
     if (dr.labs.HasValue)
     { 
@@ -257,13 +229,12 @@ foreach (var dr in discipline_rows)
         sw.WriteLine($"                   Часов-всего {labs_all}");
         sw.WriteLine($"                   Индив.      {Math.Round(ind,1, MidpointRounding.ToZero)}");
 
-        ws.Cells[_row, __i++].Value = labs / 4;
-        ws.Cells[_row, __i++].Value = labs_all;
-        ws.Cells[_row, __i++].Value = labs_all;
-        ws.Cells[_row, __i++].Value = Math.Round(ind, 1, MidpointRounding.ToZero);
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.LAB_COUNT].Value = labs / 4;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.LAB_HOURS].Value = labs_all;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.LAB_BUDGET].Value = labs_all;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.LAB_IND].Value = Math.Round(ind, 1, MidpointRounding.ToZero);
     }
-    else
-        __i += 4;
+
 
     if (dr.kur.HasValue)
     {
@@ -272,11 +243,10 @@ foreach (var dr in discipline_rows)
         sw.WriteLine($"   КУРСОВЫЕ ->     На человека: {hours_per_man} ");
         sw.WriteLine($"                   Часов-всего  {kur}");
 
-        ws.Cells[_row, __i++].Value = hours_per_man;
-        ws.Cells[_row, __i++].Value = kur;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.KUR_PER_MAN].Value = hours_per_man;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.KUR].Value = kur;
     }
-    else
-        __i += 2;
+
 
     if (dr.ind > 0)
     {
@@ -285,13 +255,12 @@ foreach (var dr in discipline_rows)
         sw.WriteLine($"   ИНДИВИДУАЛЬНАЯ -> На человека: {ind_per_man}");
         sw.WriteLine($"                     Часов-всего  {ind}");
 
-        ws.Cells[_row, __i++].Value = ind_per_man;
-        ws.Cells[_row, __i++].Value = ind;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.IND_PER_MAN].Value = ind_per_man;
+        ws.Cells[_row, (int)ExcellMapper.A_Fields.IND].Value = ind;
     }
-    else
-        __i += 2;
+
     sw.WriteLine($"   ВСЕГО ЗА КУРС ->  {dr.sum}");
-    ws.Cells[_row, __i++].Value = dr.sum;
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.SUM].Value = dr.sum;
 
     sw.WriteLine("--------------");
     sw.WriteLine("");
@@ -306,7 +275,7 @@ _row = 3;
 
 va_rows = va_rows.Where(x => (x[VARow.Fields.STREAM] != null) && !x[VARow.Fields.STREAM].Contains("АСП")).ToList();
 
-___i = 1;
+int ___i = 1;
 
 ws.Cells[2, ___i++].Value = "id";
 ws.Cells[2, ___i++].Value = "имя";

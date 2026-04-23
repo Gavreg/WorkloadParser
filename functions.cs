@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -153,6 +154,8 @@ namespace ConsoleApp11
 
         }
     }
+
+
 
 
     class Discipline_Row
@@ -457,5 +460,84 @@ namespace ConsoleApp11
             Console.WriteLine('┘');
         }
 
+    }
+
+    static class ExcellMapper
+    {
+        public enum A_Fields
+        {
+            ID = 1,
+            NAME = 2,
+            SEM = 3,
+            STREAM = 4,
+            STREAM_FULL = 5,
+            GROUPS = 6,
+            SUBGROUPS = 7,
+            
+            LEC_COUNT = 8,
+            LEC_HOURS = 9,
+            LEC_HOURS_BUDGET = 10,
+
+            PR_COUNT = 11,
+            PR_HOURS = 12,
+            PR_BUDGET = 13,
+            PR_IND = 14,
+            
+
+            LAB_COUNT = 15,
+            LAB_HOURS = 16,
+            LAB_BUDGET = 17,
+            LAB_IND = 18,
+
+            KUR_PER_MAN = 19,
+            KUR = 20,
+
+            IND_PER_MAN = 21,
+            IND = 22,
+            
+
+            SUM = 23
+
+
+        };
+
+        private static Dictionary<A_Fields, string> columnnames = new Dictionary<A_Fields, string> 
+        {
+            {A_Fields.ID, "id"},
+            {A_Fields.NAME, "наим"},
+            {A_Fields.SEM, "сем" },
+            {A_Fields.STREAM, "пот"  },
+            {A_Fields.STREAM_FULL, "пот_год"  },
+            {A_Fields.GROUPS, "гр"  },
+            {A_Fields.SUBGROUPS, "подгр" },
+            
+            {A_Fields.LEC_COUNT, "лек кол" },
+            {A_Fields.LEC_HOURS_BUDGET, "лек бюдж" },
+            {A_Fields.LEC_HOURS, "лек час" },
+
+            {A_Fields.PR_COUNT, "сем кол" },
+            {A_Fields.PR_BUDGET, "сем бюдж" },
+            {A_Fields.PR_HOURS, "сем час" },
+            {A_Fields.PR_IND, "сем инд" },
+
+            {A_Fields.LAB_COUNT, "лаб кол" },
+            {A_Fields.LAB_HOURS, "лаб час" },
+            {A_Fields.LAB_BUDGET, "лаб бюдж" },
+            {A_Fields.LAB_IND, "лаб инд" },
+
+            {A_Fields.KUR, "кур" },
+            {A_Fields.KUR_PER_MAN, "кур/чел" },
+
+            {A_Fields.IND, "инд" },
+            {A_Fields.IND_PER_MAN, "инд/чел" },
+
+            {A_Fields.SUM, "всего" }
+        };
+        
+        public static string ColumnName(A_Fields col)
+        {
+            return columnnames[col];
+        }
+      
     }
 }

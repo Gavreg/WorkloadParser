@@ -473,30 +473,32 @@ namespace ConsoleApp11
             STREAM_FULL = 5,
             GROUPS = 6,
             SUBGROUPS = 7,
+
+            STUDENTS = 8,
             
-            LEC_COUNT = 8,
-            LEC_HOURS = 9,
-            LEC_HOURS_BUDGET = 10,
+            LEC_COUNT = 9,
+            LEC_HOURS = 10,
+            LEC_HOURS_BUDGET = 11,
 
-            PR_COUNT = 11,
-            PR_HOURS = 12,
-            PR_BUDGET = 13,
-            PR_IND = 14,
-            
-
-            LAB_COUNT = 15,
-            LAB_HOURS = 16,
-            LAB_BUDGET = 17,
-            LAB_IND = 18,
-
-            KUR_PER_MAN = 19,
-            KUR = 20,
-
-            IND_PER_MAN = 21,
-            IND = 22,
+            PR_COUNT = 12,
+            PR_HOURS = 13,
+            PR_BUDGET = 14,
+            PR_IND = 15,
             
 
-            SUM = 23
+            LAB_COUNT = 16,
+            LAB_HOURS = 17,
+            LAB_BUDGET = 18,
+            LAB_IND = 19,
+
+            KUR_PER_MAN = 20,
+            KUR = 21,
+
+            IND_PER_MAN = 22,
+            IND = 23,
+            
+
+            SUM = 24
 
 
         };
@@ -510,7 +512,8 @@ namespace ConsoleApp11
             {A_Fields.STREAM_FULL, "пот_год"  },
             {A_Fields.GROUPS, "гр"  },
             {A_Fields.SUBGROUPS, "подгр" },
-            
+            {A_Fields.STUDENTS, "струд" },
+
             {A_Fields.LEC_COUNT, "лек кол" },
             {A_Fields.LEC_HOURS_BUDGET, "лек бюдж" },
             {A_Fields.LEC_HOURS, "лек час" },

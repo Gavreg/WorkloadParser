@@ -163,7 +163,8 @@ foreach (var dr in discipline_rows)
     ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM].Value = dr.stream;
     ws.Cells[_row, (int)ExcellMapper.A_Fields.STREAM_FULL].Value = dr.stream + "-" + Math.Round(1.0*curYear - ( (_sem - 1))%8 / 2).ToString();
     ws.Cells[_row, (int)ExcellMapper.A_Fields.GROUPS].Value = dr.group;
-   
+    ws.Cells[_row, (int)ExcellMapper.A_Fields.STUDENTS].Value = dr.student;
+
 
     if (dr.lections.HasValue)
     {
